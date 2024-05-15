@@ -1,0 +1,10 @@
+<div [formGroup]="parentForm" class="button-array-container">
+  <div formArrayName="buttons">
+    <div *ngFor="let button of buttons.controls; let i = index" class="button-array-item" [formGroupName]="i">
+      <input [id]="'text' + i" class="button-array-input" type="text" formControlName="text" placeholder="Button Text">
+      <input [id]="'url' + i" class="button-array-input" type="url" formControlName="url" placeholder="Button URL">
+      <button mat-flat-button color="warn" (click)="removeButton(i)">x</button>
+    </div>
+  </div>
+  <button mat-flat-button color="accent" (click)="addButton()">Add Button</button>
+</div>

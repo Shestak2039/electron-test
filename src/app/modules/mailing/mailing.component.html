@@ -1,0 +1,45 @@
+<form class="mailing-container" [formGroup]="form" (submit)="onSubmit()">
+  <mat-tab-group>
+    <mat-tab label="Editor">
+      <app-editor formControlName="content"></app-editor>
+    </mat-tab>
+    <mat-tab label="Manual">
+      <textarea class="mailing-manual-text" formControlName="content"></textarea>
+    </mat-tab>
+  </mat-tab-group>
+  <div class="mailing-system-fields">
+    <label class="mailing-system-fields__field">
+      Pick source type
+      <mat-radio-group
+        formControlName="sourceType"
+        class="mailing-system-fields__field_radio"
+        aria-label="Select an option"
+      >
+        <ng-container *ngFor="let sourceTypeValue of sourceTypesValues">
+          <mat-radio-button [value]="sourceTypeValue">{{sourceTypeValue}}</mat-radio-button>
+        </ng-container>
+      </mat-radio-group>
+    </label>
+    <label class="mailing-system-fields__field">
+      Source URL
+      <input formControlName="sourceUrl" class="mailing-system-fields__field_input" type="url" />
+    </label>
+    <label class="mailing-system-fields__field">
+      Target
+      <mat-radio-group
+        formControlName="target"
+        class="mailing-system-fields__field_radio"
+        aria-label="Select an option"
+      >
+        <ng-container *ngFor="let targetValue of targetValues">
+          <mat-radio-button [value]="targetValue">{{targetValue}}</mat-radio-button>
+        </ng-container>
+      </mat-radio-group>
+    </label>
+    <div class="mailing-system-fields__field">
+      Buttons
+      <app-mailing-buttons [parentForm]="form"></app-mailing-buttons>
+    </div>
+    <button type="submit" mat-flat-button color="primary">Submit</button>
+  </div>
+</form>
